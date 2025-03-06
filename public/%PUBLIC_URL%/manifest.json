@@ -1,0 +1,14 @@
+{
+    "short_name": "BookMyBus",
+    "name": "BookMyBus App",
+    "icons": [
+      {
+        "src": "/logo.svg",
+        "type": "image/svg+xml",
+        "sizes": "any"
+      }
+    ],
+    "start_url": "/",
+    "display": "standalone"
+  }
+  

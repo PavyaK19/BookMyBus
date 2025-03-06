@@ -1,0 +1,390 @@
+.home-container {
+  position: relative;
+  height: 100vh; 
+  width: 100vw; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  color:black;
+  font-size: 22px;
+  font-style: italic;
+  z-index: 1; 
+}
+
+.home-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("https://punetours.com/wp-content/uploads/2024/12/frontrow-view-tourist-buses-shining-summer-light_153608-93009.jpg"); /* Image from public folder */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(10px); 
+  z-index: -1; 
+}
+.home-btn {
+  padding: 12px 24px;
+  font-size: 1rem;
+  background-color: #1fa62a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.home-btn:hover {
+  background-color: #3b7dc3;
+}
+.booking-container{
+  position: relative;
+  height: 100vh; 
+  width: 100vw; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  color:white;
+  font-size: 22px;
+  font-style: italic;
+  z-index: 1; 
+}
+.booking-container::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("https://t4.ftcdn.net/jpg/00/59/74/69/240_F_59746903_ZwzIlZD2AROX6dwGkjdEkJ4SsWHbVcqv.jpg"); /* Image from public folder */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(10px); 
+  z-index: -1; 
+}
+.booking-btn{
+  background-color: #1fa62a;;
+}
+.bus-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.bus-item {
+  display: flex;
+  align-items: center;
+  margin: 1px;
+  cursor: pointer;
+}
+
+.bus-info {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 1000px; /* Ensure the width fits the image and details */
+  justify-content: space-between;
+}
+
+.bus-image {
+  width: 300px; /* Set the width of the image */
+  height: 300px; /* Set the height of the image */
+  margin-right: 15px; /* Space between image and text */
+  border-radius: 5px; /* Optional: rounded corners */
+  object-fit:fill /* Ensure the image fits well within the defined size */
+  
+}
+.bus-item:hover {
+  transform: scale(1.05);
+}
+
+.bus-info {
+  text-align:center;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px;
+  margin: 5px;
+  background-color: #007bff;
+  color: rgb(4, 3, 3);
+  border: none;
+  border-radius: 5px;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color:rgb(119, 214, 252);
+  padding: 10px 5px;
+  color: rgb(0, 0, 0);
+}
+
+.logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  display: inline-block;
+
+}
+.logo img {
+  height: 70px; /* Adjust as needed */
+  width: 70px; /* Maintain aspect ratio */
+  border-radius: 50%; /* Makes the image circular */
+  object-fit: cover;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+.contact-container {
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 15px;
+  background: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin: 10px 0 5px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  height: 80px;
+}
+
+.button-container {
+  margin-top: 10px;
+}
+
+.submit-btn {
+  padding: 8px 15px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: #0056b3;
+}
+
+.success-message {
+  color: green;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.seat-selection-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #ffffff;
+}
+.seat:hover {
+  background-color: #ddd;
+}
+
+.selected {
+  background-color: green;
+  color: white;
+  border: 2px solid darkgreen;
+  transform: scale(1.1);
+}
+.payment-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+.footer {
+  background-color: #003366; /* Dark blue */
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.footer-brand h2 {
+  font-size: 24px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin: 5px 0;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.footer-social .social-icons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.footer-social .social-icons a {
+  font-size: 24px;
+  color: white;
+  transition: color 0.3s;
+}
+
+.footer-social .social-icons a:hover {
+  color: #ffcc00; /* Yellow hover effect */
+}
+
+.footer-bottom {
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+  font-size: 14px;
+}
+.about-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px;
+  text-align: center;
+}
+
+.about-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.about-text {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.about-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.about-list li {
+  font-size: 1.1rem;
+  margin: 8px 0;
+}
+.privacy-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px;
+  text-align: left;
+}
+
+.privacy-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.privacy-text {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.privacy-section {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #222;
+}
+.terms-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px;
+  text-align: left;
+}
+
+.terms-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.terms-text {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.terms-section {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #222;
+}
