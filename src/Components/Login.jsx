@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -8,33 +9,32 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const validCredentials = {
-    email: "717823p139@kce.ac.in",
-    password: "pavi"
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    setError("");
+
     if (!email || !password) {
       setError("Both fields are required!");
       return;
     }
 
-    if (email === validCredentials.email && password === validCredentials.password) {
-      setError("");
-      localStorage.setItem("isLoggedIn", "true"); // Save login state
-      localStorage.setItem("userEmail", email); // Store user email
-      
-      // 🔥 Force update Navbar by triggering storage event
+    try {
+      const res = await axios.post("http://localhost:5000/api/passenger/login", {
+        email,
+        password,
+      });
+
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userEmail", email);
       window.dispatchEvent(new Event("storage"));
 
-      const redirectTo = location.state?.redirectTo || "/booking"; // Get previous page
-      const stateData = location.state?.data || {}; // Get the previous page state
-      
-      navigate(redirectTo, { state: stateData }); // Redirect to previous page with state
-    } else {
-      setError("Invalid email or password. Please try again.");
+      const redirectTo = location.state?.redirectTo || "/booking";
+      const stateData = location.state?.data || {};
+      navigate(redirectTo, { state: stateData });
+    } catch (err) {
+      const message =
+        err.response?.data?.message || "Login failed. Try again.";
+      setError(message);
     }
   };
 
@@ -66,9 +66,15 @@ const Login = () => {
 
         {error && <p className="error-message">{error}</p>}
 
-        <button type="submit" className="login-btn">
-          Login
-        </button>
+        <button type="submit" className="login-btn">Login</button>
+
+        <p className="register-link">
+          Don't have an account? <Link to="/register">Register here</Link>
+        </p>
+
+        <p className="register-link">
+          Admin? <Link to="/admin-login">Login as Admin</Link>
+        </p>
       </form>
     </div>
   );

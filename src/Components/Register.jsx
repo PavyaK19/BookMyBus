@@ -1,43 +1,39 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const navigate = useNavigate();
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
+    setError("");
+    setSuccess("");
 
-    const trimmedEmail = email.trim();
-    const trimmedPassword = password.trim();
-    const trimmedConfirmPassword = confirmPassword.trim();
-
-    if (!trimmedEmail || !trimmedPassword || !trimmedConfirmPassword) {
-      setError("All fields are required!");
+    if (!email || !password) {
+      setError("Both fields are required!");
       return;
     }
 
-    if (trimmedPassword !== trimmedConfirmPassword) {
-      setError("Passwords do not match!");
-      return;
+    try {
+      const res = await axios.post("http://localhost:5000/api/passenger/register", {
+        email,
+        password,
+      });
+
+      setSuccess("Registration successful! Redirecting to login...");
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
+    } catch (err) {
+      const message =
+        err.response?.data?.message || "Registration failed. Try again.";
+      setError(message);
     }
-
-    // Retrieve existing users
-    const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
-    if (existingUsers.some((user) => user.email === trimmedEmail)) {
-      setError("Email already registered! Please log in.");
-      return;
-    }
-
-    // Save user details (hashed password)
-    const newUser = { email: trimmedEmail, password: btoa(trimmedPassword) };
-    localStorage.setItem("users", JSON.stringify([...existingUsers, newUser]));
-
-    alert("Registration successful! You can now log in.");
-    navigate("/login"); // Redirect to login
   };
 
   return (
@@ -54,39 +50,26 @@ const Register = () => {
             required
           />
         </div>
-
         <div className="input-group">
           <label>Password:</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter your password"
+            placeholder="Enter a password"
             required
           />
         </div>
-
-        <div className="input-group">
-          <label>Confirm Password:</label>
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder="Confirm your password"
-            required
-          />
-        </div>
-
         {error && <p className="error-message">{error}</p>}
-
-        <button type="submit" className="login-btn">
-          Register
-        </button>
+        {success && <p className="success-message">{success}</p>}
+        <button type="submit" className="login-btn">Register</button>
+        <p className="register-link">
+          Already have an account? <Link to="/login">Login here</Link>
+        </p>
+        <p className="register-link">
+          Admin? <Link to="/admin-register">Register as Admin</Link>
+        </p>
       </form>
-
-      <p>
-        Already have an account? <a href="/login">Login here</a>
-      </p>
     </div>
   );
 };
